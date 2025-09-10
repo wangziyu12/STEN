@@ -1,0 +1,460 @@
+INFO - 02/23/25 18:32:35 - 0:00:00 - Start evaluation runs/attention_ucf_all_main
+INFO - 02/23/25 18:32:35 - 0:00:00 - AVCA: True
+                                     ale: False
+                                     apn: False
+                                     audio_baseline: False
+                                     baseline: False
+                                     bs: 256
+                                     cjme: False
+                                     concatenated_baseline: False
+                                     dataset_name: UCF
+                                     device: cuda
+                                     devise: False
+                                     drop_last: True
+                                     eval_name: None
+                                     load_path_stage_A: runs/attention_ucf_val_main
+                                     load_path_stage_B: runs/attention_ucf_all_main
+                                     new_model: False
+                                     new_model_early_fusion: False
+                                     new_model_middle_fusion: False
+                                     num_workers: 8
+                                     pin_memory: True
+                                     root_dir: None
+                                     save_performances: False
+                                     sje: False
+                                     video_baseline: False
+INFO - 02/23/25 18:32:35 - 0:00:00 - Loaded configuration runs/attention_ucf_all_main/args.pkl
+INFO - 02/23/25 18:32:35 - 0:00:00 - AVCA: True
+                                     additional_dropout: 0.5
+                                     additional_triplets_loss: True
+                                     ale: False
+                                     apn: False
+                                     audio_baseline: False
+                                     baseline: False
+                                     bs: 256
+                                     cjme: False
+                                     concatenated_baseline: False
+                                     cycle_loss: False
+                                     dataset_name: UCF
+                                     debug: False
+                                     debug_comment: 
+                                     decoder_dropout: 0.3
+                                     decoder_hidden_size: 512
+                                     decoder_use_bn: False
+                                     depth_transformer: 1
+                                     device: cuda
+                                     devise: False
+                                     distance_fn: L2Loss
+                                     dropout_baselines: 0.2
+                                     dump_path: .
+                                     embedding_dropout: 0.2
+                                     embedding_use_bn: False
+                                     embeddings_hidden_size: 512
+                                     epochs: 50
+                                     exp_name: attention_ucf_all_main
+                                     feature_extraction_method: main_features
+                                     first_additional_triplet: 1
+                                     input_size: None
+                                     input_size_audio: 512
+                                     input_size_video: 512
+                                     lr: 0.001
+                                     lr_scheduler: True
+                                     manual_text_word2vec: False
+                                     margin: 1.0
+                                     momentum: 0.1
+                                     n_batches: 500
+                                     new_model: False
+                                     new_model_attention_both_heads: False
+                                     new_model_early_fusion: False
+                                     new_model_middle_fusion: False
+                                     norm_inputs: False
+                                     normalize_decoder_outputs: False
+                                     reg_loss: True
+                                     retrain_all: True
+                                     root_dir: avgzsl_benchmark_datasets/UCF
+                                     save_checkpoints: True
+                                     second_additional_triplet: 1
+                                     seed: 42
+                                     sje: False
+                                     third_additional_triplet: 1
+                                     val_all_loss: False
+                                     verbose: False
+                                     video_baseline: False
+                                     z_score_inputs: False
+                                     zero_shot_split: main_split
+INFO - 02/23/25 18:32:35 - 0:00:00 - The evaluation will be stored in /home/ubuntu/WorkSpace/AVCA-GZSL/runs/attention_ucf_all_main
+                                     
+
+INFO - 02/23/25 18:32:35 - 0:00:00 - Initializing Dataset UCFDataset	Dataset split: val	Zero shot mode: None
+INFO - 02/23/25 18:32:35 - 0:00:00 - Loading processed data from disk from /home/ubuntu/WorkSpace/AVCA-GZSL/avgzsl_benchmark_datasets/UCF/_features_processed/main_features/valmain_split.pkl
+INFO - 02/23/25 18:32:35 - 0:00:00 - Initializing Dataset UCFDataset	Dataset split: test	Zero shot mode: None
+INFO - 02/23/25 18:32:35 - 0:00:00 - Loading processed data from disk from /home/ubuntu/WorkSpace/AVCA-GZSL/avgzsl_benchmark_datasets/UCF/_features_processed/main_features/testmain_split.pkl
+INFO - 02/23/25 18:32:35 - 0:00:00 - AVCA(
+                                       (A_enc): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=512, out_features=512, bias=True)
+                                           (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.2, inplace=False)
+                                           (4): Linear(in_features=512, out_features=300, bias=True)
+                                           (5): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (6): ReLU()
+                                           (7): Dropout(p=0.2, inplace=False)
+                                         )
+                                       )
+                                       (V_enc): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=512, out_features=512, bias=True)
+                                           (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.2, inplace=False)
+                                           (4): Linear(in_features=512, out_features=300, bias=True)
+                                           (5): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (6): ReLU()
+                                           (7): Dropout(p=0.2, inplace=False)
+                                         )
+                                       )
+                                       (cross_attention): Transformer(
+                                         (layers): ModuleList(
+                                           (0): ModuleList(
+                                             (0): PreNorm(
+                                               (norm): LayerNorm((300,), eps=1e-05, elementwise_affine=True)
+                                               (fn): Attention(
+                                                 (attend): Softmax(dim=-1)
+                                                 (to_qkv): Linear(in_features=300, out_features=900, bias=False)
+                                                 (to_out): Sequential(
+                                                   (0): Linear(in_features=300, out_features=300, bias=True)
+                                                   (1): Dropout(p=0.2, inplace=False)
+                                                 )
+                                               )
+                                             )
+                                             (1): PreNorm(
+                                               (norm): LayerNorm((300,), eps=1e-05, elementwise_affine=True)
+                                               (fn): FeedForward(
+                                                 (net): Sequential(
+                                                   (0): Linear(in_features=300, out_features=64, bias=True)
+                                                   (1): GELU()
+                                                   (2): Dropout(p=0.2, inplace=False)
+                                                   (3): Linear(in_features=64, out_features=300, bias=True)
+                                                   (4): Dropout(p=0.2, inplace=False)
+                                                 )
+                                               )
+                                             )
+                                           )
+                                         )
+                                       )
+                                       (W_proj): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=300, out_features=64, bias=True)
+                                           (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.5, inplace=False)
+                                         )
+                                       )
+                                       (D): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=64, out_features=300, bias=True)
+                                           (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.5, inplace=False)
+                                         )
+                                       )
+                                       (SNNbranchaudio): SNNBranch(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=512, out_features=512, bias=True)
+                                           (1): LIFAct()
+                                           (2): Linear(in_features=512, out_features=300, bias=True)
+                                           (3): LIFAct()
+                                         )
+                                       )
+                                       (SNNbranchvideo): SNNBranch(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=512, out_features=512, bias=True)
+                                           (1): LIFAct()
+                                           (2): Linear(in_features=512, out_features=300, bias=True)
+                                           (3): LIFAct()
+                                         )
+                                       )
+                                       (A_proj): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=300, out_features=512, bias=True)
+                                           (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.3, inplace=False)
+                                           (4): Linear(in_features=512, out_features=64, bias=True)
+                                           (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (6): ReLU()
+                                           (7): Dropout(p=0.3, inplace=False)
+                                         )
+                                       )
+                                       (V_proj): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=300, out_features=512, bias=True)
+                                           (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.3, inplace=False)
+                                           (4): Linear(in_features=512, out_features=64, bias=True)
+                                           (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (6): ReLU()
+                                           (7): Dropout(p=0.3, inplace=False)
+                                         )
+                                       )
+                                       (A_rec): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=64, out_features=300, bias=True)
+                                           (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.5, inplace=False)
+                                         )
+                                       )
+                                       (V_rec): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=64, out_features=300, bias=True)
+                                           (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.5, inplace=False)
+                                         )
+                                       )
+                                       (criterion_reg): MSELoss()
+                                       (triplet_loss): TripletMarginLoss()
+                                     )
+INFO - 02/23/25 18:32:35 - 0:00:00 - Loading model weights from runs/attention_ucf_val_main/AVCA_score.pt
+INFO - 02/23/25 18:32:37 - 0:00:03 - Load from epoch: 5
+INFO - 02/23/25 18:32:37 - 0:00:03 - Loading model weights from runs/attention_ucf_all_main/checkpoints/AVCA_score_ckpt_4.pt
+INFO - 02/23/25 18:32:38 - 0:00:03 - Load from epoch: 5
+INFO - 02/23/25 18:32:40 - 0:00:05 - Validation betas:	Audio=2.200000047683716	Video=2.200000047683716	Both=2.200000047683716
+INFO - 02/23/25 18:32:40 - 0:00:05 - Best beta combined: 2.200000047683716
+INFO - 02/23/25 18:32:40 - 0:00:05 - 
+                                                 Seen performance=33.44, Unseen performance=21.41, GZSL performance=26.11, ZSL performance=24.87 
+                                                 
+INFO - 02/23/25 18:32:40 - 0:00:05 - FINISHED
+INFO - 02/24/25 08:11:50 - 0:00:00 - Start evaluation runs/attention_ucf_all_main
+INFO - 02/24/25 08:11:50 - 0:00:00 - AVCA: True
+                                     ale: False
+                                     apn: False
+                                     audio_baseline: False
+                                     baseline: False
+                                     bs: 256
+                                     cjme: False
+                                     concatenated_baseline: False
+                                     dataset_name: UCF
+                                     device: cuda
+                                     devise: False
+                                     drop_last: True
+                                     eval_name: None
+                                     load_path_stage_A: runs/attention_ucf_val_main
+                                     load_path_stage_B: runs/attention_ucf_all_main
+                                     new_model: False
+                                     new_model_early_fusion: False
+                                     new_model_middle_fusion: False
+                                     num_workers: 8
+                                     pin_memory: True
+                                     root_dir: None
+                                     save_performances: False
+                                     sje: False
+                                     video_baseline: False
+INFO - 02/24/25 08:11:50 - 0:00:00 - Loaded configuration runs/attention_ucf_all_main/args.pkl
+INFO - 02/24/25 08:11:50 - 0:00:00 - AVCA: True
+                                     additional_dropout: 0.5
+                                     additional_triplets_loss: True
+                                     ale: False
+                                     apn: False
+                                     audio_baseline: False
+                                     baseline: False
+                                     bs: 256
+                                     cjme: False
+                                     concatenated_baseline: False
+                                     cycle_loss: False
+                                     dataset_name: UCF
+                                     debug: False
+                                     debug_comment: 
+                                     decoder_dropout: 0.3
+                                     decoder_hidden_size: 512
+                                     decoder_use_bn: False
+                                     depth_transformer: 1
+                                     device: cuda
+                                     devise: False
+                                     distance_fn: L2Loss
+                                     dropout_baselines: 0.2
+                                     dump_path: .
+                                     embedding_dropout: 0.2
+                                     embedding_use_bn: False
+                                     embeddings_hidden_size: 512
+                                     epochs: 50
+                                     exp_name: attention_ucf_all_main
+                                     feature_extraction_method: main_features
+                                     first_additional_triplet: 1
+                                     input_size: None
+                                     input_size_audio: 512
+                                     input_size_video: 512
+                                     lr: 0.001
+                                     lr_scheduler: True
+                                     manual_text_word2vec: False
+                                     margin: 1.0
+                                     momentum: 0.1
+                                     n_batches: 500
+                                     new_model: False
+                                     new_model_attention_both_heads: False
+                                     new_model_early_fusion: False
+                                     new_model_middle_fusion: False
+                                     norm_inputs: False
+                                     normalize_decoder_outputs: False
+                                     reg_loss: True
+                                     retrain_all: True
+                                     root_dir: avgzsl_benchmark_datasets/UCF
+                                     save_checkpoints: True
+                                     second_additional_triplet: 1
+                                     seed: 42
+                                     sje: False
+                                     third_additional_triplet: 1
+                                     val_all_loss: False
+                                     verbose: False
+                                     video_baseline: False
+                                     z_score_inputs: False
+                                     zero_shot_split: main_split
+INFO - 02/24/25 08:11:50 - 0:00:00 - The evaluation will be stored in /home/ubuntu/WorkSpace/AVCA-GZSL/runs/attention_ucf_all_main
+                                     
+
+INFO - 02/24/25 08:11:50 - 0:00:00 - Initializing Dataset UCFDataset	Dataset split: val	Zero shot mode: None
+INFO - 02/24/25 08:11:50 - 0:00:00 - Loading processed data from disk from /home/ubuntu/WorkSpace/AVCA-GZSL/avgzsl_benchmark_datasets/UCF/_features_processed/main_features/valmain_split.pkl
+INFO - 02/24/25 08:11:50 - 0:00:00 - Initializing Dataset UCFDataset	Dataset split: test	Zero shot mode: None
+INFO - 02/24/25 08:11:50 - 0:00:00 - Loading processed data from disk from /home/ubuntu/WorkSpace/AVCA-GZSL/avgzsl_benchmark_datasets/UCF/_features_processed/main_features/testmain_split.pkl
+INFO - 02/24/25 08:11:50 - 0:00:00 - AVCA(
+                                       (A_enc): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=512, out_features=512, bias=True)
+                                           (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.2, inplace=False)
+                                           (4): Linear(in_features=512, out_features=300, bias=True)
+                                           (5): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (6): ReLU()
+                                           (7): Dropout(p=0.2, inplace=False)
+                                         )
+                                       )
+                                       (V_enc): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=512, out_features=512, bias=True)
+                                           (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.2, inplace=False)
+                                           (4): Linear(in_features=512, out_features=300, bias=True)
+                                           (5): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (6): ReLU()
+                                           (7): Dropout(p=0.2, inplace=False)
+                                         )
+                                       )
+                                       (cross_attention): Transformer(
+                                         (layers): ModuleList(
+                                           (0): ModuleList(
+                                             (0): PreNorm(
+                                               (norm): LayerNorm((300,), eps=1e-05, elementwise_affine=True)
+                                               (fn): Attention(
+                                                 (attend): Softmax(dim=-1)
+                                                 (to_qkv): Linear(in_features=300, out_features=900, bias=False)
+                                                 (to_out): Sequential(
+                                                   (0): Linear(in_features=300, out_features=300, bias=True)
+                                                   (1): Dropout(p=0.2, inplace=False)
+                                                 )
+                                               )
+                                             )
+                                             (1): PreNorm(
+                                               (norm): LayerNorm((300,), eps=1e-05, elementwise_affine=True)
+                                               (fn): FeedForward(
+                                                 (net): Sequential(
+                                                   (0): Linear(in_features=300, out_features=64, bias=True)
+                                                   (1): GELU()
+                                                   (2): Dropout(p=0.2, inplace=False)
+                                                   (3): Linear(in_features=64, out_features=300, bias=True)
+                                                   (4): Dropout(p=0.2, inplace=False)
+                                                 )
+                                               )
+                                             )
+                                           )
+                                         )
+                                       )
+                                       (W_proj): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=300, out_features=64, bias=True)
+                                           (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.5, inplace=False)
+                                         )
+                                       )
+                                       (D): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=64, out_features=300, bias=True)
+                                           (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.5, inplace=False)
+                                         )
+                                       )
+                                       (SNNbranchaudio): SNNBranch(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=512, out_features=512, bias=True)
+                                           (1): LIFAct()
+                                           (2): Linear(in_features=512, out_features=300, bias=True)
+                                           (3): LIFAct()
+                                         )
+                                       )
+                                       (SNNbranchvideo): SNNBranch(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=512, out_features=512, bias=True)
+                                           (1): LIFAct()
+                                           (2): Linear(in_features=512, out_features=300, bias=True)
+                                           (3): LIFAct()
+                                         )
+                                       )
+                                       (A_proj): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=300, out_features=512, bias=True)
+                                           (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.3, inplace=False)
+                                           (4): Linear(in_features=512, out_features=64, bias=True)
+                                           (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (6): ReLU()
+                                           (7): Dropout(p=0.3, inplace=False)
+                                         )
+                                       )
+                                       (V_proj): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=300, out_features=512, bias=True)
+                                           (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.3, inplace=False)
+                                           (4): Linear(in_features=512, out_features=64, bias=True)
+                                           (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (6): ReLU()
+                                           (7): Dropout(p=0.3, inplace=False)
+                                         )
+                                       )
+                                       (A_rec): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=64, out_features=300, bias=True)
+                                           (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.5, inplace=False)
+                                         )
+                                       )
+                                       (V_rec): EmbeddingNet(
+                                         (fc): Sequential(
+                                           (0): Linear(in_features=64, out_features=300, bias=True)
+                                           (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                                           (2): ReLU()
+                                           (3): Dropout(p=0.5, inplace=False)
+                                         )
+                                       )
+                                       (criterion_reg): MSELoss()
+                                       (triplet_loss): TripletMarginLoss()
+                                     )
+INFO - 02/24/25 08:11:50 - 0:00:00 - Loading model weights from runs/attention_ucf_val_main/AVCA_score.pt
+INFO - 02/24/25 08:11:53 - 0:00:03 - Load from epoch: 5
+INFO - 02/24/25 08:11:53 - 0:00:03 - Loading model weights from runs/attention_ucf_all_main/checkpoints/AVCA_score_ckpt_4.pt
+INFO - 02/24/25 08:11:53 - 0:00:03 - Load from epoch: 5
+INFO - 02/24/25 08:11:55 - 0:00:05 - Validation betas:	Audio=2.200000047683716	Video=2.200000047683716	Both=2.200000047683716
+INFO - 02/24/25 08:11:55 - 0:00:05 - Best beta combined: 2.200000047683716
+INFO - 02/24/25 08:11:55 - 0:00:05 - 
+                                                 Seen performance=33.44, Unseen performance=21.41, GZSL performance=26.11, ZSL performance=24.87 
+                                                 
+INFO - 02/24/25 08:11:55 - 0:00:05 - FINISHED
