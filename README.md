@@ -307,7 +307,7 @@ Additionally, the ```.sh``` files in ```run_scripts/``` also contain the evaluat
 ```splitting_scripts``` - Contains files from spltting our dataset into the required structure. 
 
 ```w2v_features``` - Contains the w2v embeddings for each dataset.
-```run_scripts``` - Contains the scripts for training/evaluation for all models for each dataset.
+```run_scripts``` - Contains the scripts for training/evaluation for all models for each dataset. 
 
 
 # References
